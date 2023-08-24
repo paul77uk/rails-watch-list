@@ -1,4 +1,25 @@
-<% @lists.each do |list| %>
-  <div><%= link_to list.name, list_path(list) %></div>
-<% end %>
-<%= link_to 'New List', new_list_path, class: 'btn btn-primary' %>
+<div
+  class="img d-flex justify-content-center align-items-center text-center shadow-1-strong rounded text-white"
+  style="background-image: url('<%= image_path "movie.jpg" %>'); background-size: cover; height: 300px;"
+>
+  <h5 style="text-shadow: 2px 2px #000000;">Save any kind of movies</h5>
+</div>
+
+<div class="container mt-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h6 class="m-0">My Lists</h6>
+    <%= link_to 'New List', new_list_path, class: 'btn btn-primary' %>
+  </div>
+
+  <div class="row justify-content-between">
+    <% @lists.each do |list| %>
+      <div class="col-6 col-lg-4 col-xl-3 col-xxl-2">
+        <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title text-center"><%= link_to list.name, list_path(list), class: 'text-decoration-none' %></h5>
+        </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
