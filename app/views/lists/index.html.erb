@@ -15,14 +15,22 @@
     <% @lists.each do |list| %>
       <div class="col-6 col-lg-4 col-xl-3 col-xxl-2 p-2">
         <% if list.photo.attached?  %>
-          <%= link_to list_path(list) do %>
-          <%= cl_image_tag list.photo.key,  :transformation=>[
-          {:color=>"#FFFFFF", :overlay=>{:font_family=>"helvetica", :font_size=>60, :font_weight=>"bold", :text_align=>"left", :text=> list.name}},
-          {:flags=>"layer_apply", :gravity=>"north", :y=>230}, width: 300, height: 300
-          ], class: 'card-img-top' %>
-          <% end %>
+          <div
+            class="img d-flex justify-content-center align-items-center text-center shadow-1-strong rounded text-white"
+            style="background-image: url('<%= cl_image_path list.photo.key %>'); background-size: cover; background-position: center; height: 240px;"
+          >
+            <h5 style="text-shadow: 2px 2px #000000;"><%= list.name %></h5>
+          </div>
+
+
+
         <% else %>
-          <%= image_tag 'movie.jpg', class: 'card-img-top' %>
+          <div
+            class="img d-flex justify-content-center align-items-center text-center shadow-1-strong rounded text-white"
+            style="background-image: url('<%= image_path 'movie.jpg' %>'); background-size: cover; background-position: center; height: 240px;"
+          >
+            <h5 style="text-shadow: 2px 2px #000000;"><%= list.name %></h5>
+          </div>
         <% end %>
       </div>
     <% end %>
