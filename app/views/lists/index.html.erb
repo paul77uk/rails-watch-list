@@ -1,6 +1,6 @@
 <div
   class="img d-flex justify-content-center align-items-center text-center shadow-1-strong rounded text-white"
-  style="background-image: url('<%= image_path "movie.jpg" %>'); background-size: cover; height: 300px;"
+  style="background-image: url('<%= image_path "movie.jpg" %>'); background-size: cover; height: 300px; background-position: center;"
 >
   <h5 style="text-shadow: 2px 2px #000000;">Save any kind of movies</h5>
 </div>
@@ -15,22 +15,25 @@
     <% @lists.each do |list| %>
       <div class="col-6 col-lg-4 col-xl-3 col-xxl-2 p-2">
         <% if list.photo.attached?  %>
-          <div
-            class="img d-flex justify-content-center align-items-center text-center shadow-1-strong rounded text-white"
-            style="background-image: url('<%= cl_image_path list.photo.key %>'); background-size: cover; background-position: center; height: 240px;"
-          >
-            <h5 style="text-shadow: 2px 2px #000000;"><%= list.name %></h5>
-          </div>
-
+          <%= link_to list_path(list) do %>
+            <div
+              class="img d-flex justify-content-center align-items-center text-center shadow-1-strong rounded text-white"
+              style="background-image: url('<%= cl_image_path list.photo.key %>'); background-size: cover; background-position: center; height: 240px;"
+            >
+              <h5 style="text-shadow: 2px 2px #000000;"><%= list.name %></h5>
+            </div>
+          <% end %>
 
 
         <% else %>
-          <div
-            class="img d-flex justify-content-center align-items-center text-center shadow-1-strong rounded text-white"
-            style="background-image: url('<%= image_path 'movie.jpg' %>'); background-size: cover; background-position: center; height: 240px;"
-          >
-            <h5 style="text-shadow: 2px 2px #000000;"><%= list.name %></h5>
-          </div>
+          <%= link_to list_path(list) do %>
+            <div
+              class="img d-flex justify-content-center align-items-center text-center shadow-1-strong rounded text-white"
+              style="background-image: url('<%= image_path 'movie.jpg' %>'); background-size: cover; background-position: center; height: 240px;"
+            >
+              <h5 style="text-shadow: 2px 2px #000000;"><%= list.name %></h5>
+            </div>
+          <% end %>
         <% end %>
       </div>
     <% end %>
