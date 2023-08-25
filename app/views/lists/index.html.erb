@@ -14,17 +14,16 @@
   <div class="row justify-content-between align-items-center">
     <% @lists.each do |list| %>
       <div class="col-6 col-lg-4 col-xl-3 col-xxl-2 p-2">
-        <% if list.photo.key.nil?  %>
-          <%= image_tag 'movie.jpg', class: 'card-img-top' %>
-        <% else %>
+        <% if list.photo.attached?  %>
           <%= link_to list_path(list) do %>
           <%= cl_image_tag list.photo.key,  :transformation=>[
           {:color=>"#FFFFFF", :overlay=>{:font_family=>"helvetica", :font_size=>60, :font_weight=>"bold", :text_align=>"left", :text=> list.name}},
           {:flags=>"layer_apply", :gravity=>"north", :y=>230}, width: 300, height: 300
           ], class: 'card-img-top' %>
           <% end %>
+        <% else %>
+          <%= image_tag 'movie.jpg', class: 'card-img-top' %>
         <% end %>
-
       </div>
     <% end %>
   </div>
